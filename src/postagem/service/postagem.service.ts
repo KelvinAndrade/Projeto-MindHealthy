@@ -14,9 +14,11 @@ export class PostagemService{
          private postagemRepository: Repository <Postagem>
     
     ){}
+
     async findAll(): Promise <Postagem[]> {
         return this.postagemRepository.find()
-}
+    }
+
     async findById(id: number): Promise <Postagem>{
         let postagem = await this.postagemRepository.findOne({
           where:{
@@ -25,9 +27,18 @@ export class PostagemService{
         })
 
         if(!postagem)
-        throw new HttpException('Postagem não foi encontrada', HttpStatus.NOT_FOUND)
-        return postagem
+            throw new HttpException('Postagem não foi encontrada', HttpStatus.NOT_FOUND)
+            return postagem
     }
+
+    async findByTitulo(titulo: string): Promise <Postagem[]>{
+        return this.postagemRepository.find({
+            where:{
+                titulo: ILike(`%${titulo}%`)
+            }
+        })
+    }
+
     async findByDescricao(descricao: string): Promise <Postagem[]>{
         return this.postagemRepository.find({
             where:{
@@ -35,20 +46,22 @@ export class PostagemService{
             }
         })
     }
+
     async create(postagem:Postagem): Promise <Postagem>{
         return this.postagemRepository.save(postagem)
     }
+
     async update(postagem:Postagem): Promise <Postagem>{
         let postagemUpdate = await this.findById(postagem.id)
-        if(!postagemUpdate|| !postagem.id)
-        throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
-        return this.postagemRepository.save(postagem)
+        if(!postagemUpdate || !postagem.id)
+            throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
+            return this.postagemRepository.save(postagem)
     }
+
     async delete(id: number): Promise <DeleteResult>{
         let postagemDelete = await this.findById(id)
         if(!postagemDelete)
-        throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
-        return this.postagemRepository.delete(id)
+            throw new HttpException('Postagem não encontrada', HttpStatus.NOT_FOUND)
+            return this.postagemRepository.delete(id)
     }
-
 }
