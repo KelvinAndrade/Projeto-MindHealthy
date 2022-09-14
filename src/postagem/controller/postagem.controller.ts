@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common"
 import { Postagem } from "src/postagem/entities/postagem.entity"
-import { PostagemService } from "src/service/postagem.service"
+import { PostagemService } from "src/postagem/service/postagem.service"
 
 @Controller('/postagem')
 export class PostagemController{
@@ -19,6 +19,12 @@ export class PostagemController{
         return this.service.findById(id)
     }
 
+    @Get('/titulo/:titulo')
+    @HttpCode(HttpStatus.OK)
+    findBytitulo(@Param('titulo')titulo: string): Promise<Postagem[]>{
+        return this.service.findByTitulo(titulo)
+    }
+     
     @Get('/descricao/:descricao')
     @HttpCode(HttpStatus.OK)
     findByDescricao(@Param('descricao')descricao: string): Promise<Postagem[]>{
