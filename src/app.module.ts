@@ -4,7 +4,8 @@ import { Postagem } from './postagem/entities/postagem.entity';
 import { PostagemModule } from './postagem/modules/postagem.module';
 import { Temas } from './temas/entities/temas.entity';
 import { TemasModule } from './temas/modules/temas.module';
-import { Usuario } from './usuario/controller/usuario.controller';
+import { Usuario } from './usuario/entities/usuario.entity';
+import { UsuarioModule } from './usuario/modules/usuario.module';
 
 @Module({
   imports: [
@@ -31,7 +32,8 @@ import { Usuario } from './usuario/controller/usuario.controller';
     }),
 
     PostagemModule,
-    TemasModule
+    TemasModule,
+    UsuarioModule
 
     ],
   controllers: [],
