@@ -36,4 +36,4 @@ export class Temas {
 
     @OneToMany(()=> Postagem,(Postagem)=> Postagem.temas)
 
-temas:Postagem[]}
+postagem:Postagem[]}

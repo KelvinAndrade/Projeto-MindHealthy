@@ -1,7 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common"
 import { InjectRepository } from "@nestjs/typeorm"
 import { DeleteResult, ILike, Repository } from "typeorm"
-import { Usuario } from "../controller/usuario.controller"
+import { Usuario } from "../entities/usuario.entity"
+
 
 @Injectable()
 export class UsuarioService{
@@ -13,7 +14,7 @@ export class UsuarioService{
     async findAll(): Promise<Usuario[]>{
         return this.usuarioRepository.find({
             relations: {
-                temas : true
+                postagem: true
              
          }
         })
@@ -24,7 +25,7 @@ export class UsuarioService{
                 id
             },
             relations: {
-                temas: true
+                postagem: true
              
          }
         })
@@ -35,13 +36,13 @@ export class UsuarioService{
         return usuario
         }
 
-    async findByDescricao(descricao: string): Promise<Usuario[]> {
+    async findBynome(nome: string): Promise<Usuario[]> {
         return this.usuarioRepository.find({
             where:{
-            descricao: ILike(`%${descricao}%`)
+            nome: ILike(`%${nome}%`)
             },
             relations: {
-                temas : true
+                postagem: true
              
          }
         })

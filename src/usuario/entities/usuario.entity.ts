@@ -43,5 +43,5 @@ export class Usuario{
 
     @OneToMany(()=> Postagem,(Postagem)=> Postagem.usuario)
 
-    usuraio:Postagem[]
+    postagem:Postagem[]
 }
