@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common"
 import { Usuario } from "../entities/usuario.entity"
 import { UsuarioService } from "../services/usuario.service"
@@ -43,3 +44,5 @@ export class PostagemController{
         return this.service.delete(id)
     }
 }
+=======
+>>>>>>> f356ca3f796ad6115f20f3c12a975f124ee00cc5
