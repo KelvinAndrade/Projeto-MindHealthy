@@ -1,7 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common"
 import { Temas } from "../entities/temas.entity"
 import { TemasService } from "../services/temas.services"
-
 @Controller('/temas')
 export class TemasController{
     constructor(private readonly service: TemasService){}
@@ -12,15 +11,15 @@ export class TemasController{
         return this.service.findAll()//Busca tudo dentro do banco
     }
 
-    @Get('/:id')//Passar o caminho de tarefa/id
+    @Get('/:id')//Passar o caminho de temas/id
     @HttpCode(HttpStatus.OK)
     findById(@Param('id', ParseIntPipe) id: number): Promise<Temas>{//Esperando um Id, que vai ser do tipo inteiro
         return this.service.findById(id)//Buscando um Id
     }
 
-    @Get('/descricao/:descricao')//tarefa/temas/l
+    @Get('/tema/:temas')//tema/temas/l
     @HttpCode(HttpStatus.OK)//Retorna um status se der certo o Get ele retorna Ok
-    findByNome(@Param('descricao')temas: string): Promise<Temas[]>{
+    findByTema(@Param('tema')temas: string): Promise<Temas[]>{
         return this.service.findByTema(temas)
     } 
 

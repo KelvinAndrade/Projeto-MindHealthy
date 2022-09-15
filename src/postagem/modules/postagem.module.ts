@@ -2,11 +2,11 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { PostagemController } from "../controller/postagem.controller";
 import { Postagem } from "../entities/postagem.entity";
-import { PostagemService } from "../services/postagem.service";
+import { PostagemService } from "../services/postagem.services";
 
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Postagem])],//Esta criando a tabela, passando a entidade da Classe Tarefa
+    imports: [TypeOrmModule.forFeature([Postagem])],
     providers: [PostagemService],
     controllers: [PostagemController],
     exports: [TypeOrmModule]

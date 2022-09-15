@@ -4,8 +4,7 @@ import { Postagem } from './postagem/entities/postagem.entity';
 import { PostagemModule } from './postagem/modules/postagem.module';
 import { Temas } from './temas/entities/temas.entity';
 import { TemasModule } from './temas/modules/temas.module';
-import { Usuario } from './usuario/entities/usuario.entity';
-import { UsuarioModule } from './usuario/modules/usuario.module';
+import { Usuario } from './usuario/controller/usuario.controller';
 
 @Module({
   imports: [
@@ -15,7 +14,7 @@ import { UsuarioModule } from './usuario/modules/usuario.module';
 
       host: 'localhost', //Definindo que o host é o localhost
 
-      port: 3306, //Definindo a posta do local host (Porta padrão)
+      port: 3306, //Definindo a pasta do local host (Porta padrão)
 
       username: 'root', //Definindo o username do mysql
 
@@ -32,8 +31,7 @@ import { UsuarioModule } from './usuario/modules/usuario.module';
     }),
 
     PostagemModule,
-    TemasModule,
-    UsuarioModule
+    TemasModule
 
     ],
   controllers: [],
