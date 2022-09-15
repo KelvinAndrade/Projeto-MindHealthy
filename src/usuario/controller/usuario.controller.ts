@@ -1,48 +1,45 @@
-import { IsNotEmpty, MaxLength } from "class-validator";
-import { Temas } from "src/temas/entities/temas.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common"
+import { Usuario } from "../entities/usuario.entity"
+import { UsuarioService } from "../services/usuario.service"
 
-@Entity({name: 'tb_usuario'})
-export class Usuario {
-    [x: string]: any;
 
-    @PrimaryGeneratedColumn()
-    id: number
+@Controller('/usuario')
+export class PostagemController{
+    constructor(private readonly service: UsuarioService){}
 
-    @Column({nullable: false, length: 255})
-    @IsNotEmpty()
-    @MaxLength(255)
-    nome: string
+    @Get()
+    @HttpCode(HttpStatus.OK)
+    findAll(): Promise<Usuario[]>{
+        return this.service.findAll()
+    }
 
-    @IsNotEmpty()
-    @MaxLength(255)
-    @Column({nullable: false, length: 255})
-    sobrenome: string
+    @Get('/:id')
+    @HttpCode(HttpStatus.OK)
+    findById(@Param('id', ParseIntPipe) id: number): Promise<Usuario>{
+        return this.service.findById(id)
+    }
 
-    @IsNotEmpty()
-    @MaxLength(255)
-    @Column({nullable: false})
-    idade: number
+    @Get('/descricao/:descricao')
+    @HttpCode(HttpStatus.OK)
+    findByNome(@Param('descricao')descricao: string): Promise<Usuario[]>{
+        return this.service.findByDescricao(descricao)
+    } 
 
-    @IsNotEmpty()
-    @MaxLength(255)
-    @Column({nullable: false, length: 255})
-    email: string
+    @Post()
+    @HttpCode(HttpStatus.CREATED)
+    create(@Body() postagem: Usuario): Promise<Usuario>{
+        return this.service.create(usuario)
+    }
 
-    @IsNotEmpty()
-    @MaxLength(255)
-    @Column({nullable: false, length: 255})
-    telefone: string
+    @Put()
+    @HttpCode(HttpStatus.OK)
+    update(@Body() postagem: Usuario): Promise<Usuario>{
+        return this.service.update(usuario)
+    }
 
-    @MaxLength(255)
-    @Column({nullable: false, length: 255})
-    foto: string
-
-    @MaxLength(255)
-    @Column({nullable: false, length: 255})
-    senha: string
-
-    @ManyToOne(() => Temas, (Temas ) => Temas.postagem, {
-        onDelete: "CASCADE"})
-categoria: Temas
+    @Delete('/:id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    delete(@Param('id', ParseIntPipe) id: number){
+        return this.service.delete(id)
+    }
 }
