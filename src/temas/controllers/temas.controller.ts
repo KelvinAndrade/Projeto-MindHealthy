@@ -1,13 +1,7 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common"
-import { ApiTags } from "@nestjs/swagger"
+import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Body, Put, Delete } from "@nestjs/common"
 import { Temas } from "../entities/temas.entity"
-<<<<<<< HEAD:src/temas/controller/temas.controller.ts
 import { TemasService } from "../service/temas.service"
 
-@ApiTags('Temas')
-=======
-import { TemasService } from "../services/temas.service"
->>>>>>> 07dc4050e9c0813a43b1456cd633843d4d007381:src/temas/controllers/temas.controller.ts
 @Controller('/temas')
 export class TemasController{
     constructor(private readonly service: TemasService){}
@@ -47,4 +41,4 @@ export class TemasController{
     delete(@Param('id', ParseIntPipe) id: number){
         return this.service.delete(id)
     }
-}
+}//check

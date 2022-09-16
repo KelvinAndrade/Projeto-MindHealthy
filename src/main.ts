@@ -12,8 +12,7 @@ const config = new DocumentBuilder()
 .setContact('MindHealthy LTDA.',
  'mindhealthy.org.br',
   'contato@mindhealthy.com')
-
-.setVersion('v1.0.0')
+.setVersion('v0.0.1')
 .build()
 
 const document = SwaggerModule.createDocument(app, config)
@@ -24,4 +23,4 @@ SwaggerModule.setup('/swagger', app, document)
   app.enableCors()
   await app.listen(process.env.PORT || 3000);
 }
-bootstrap();
+bootstrap()//check

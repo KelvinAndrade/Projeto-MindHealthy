@@ -1,37 +1,38 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common"
+import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Body, Put, Delete } from "@nestjs/common"
+import { ApiTags } from "@nestjs/swagger"
 import { Usuario } from "../entities/usuario.entity"
 import { UsuarioService } from "../services/usuario.service"
 
-
+@ApiTags('Usuários')
 @Controller('/usuario')
 export class UsuarioController{
     constructor(private readonly service: UsuarioService){}
 
-    @Get()
-    @HttpCode(HttpStatus.OK)
+    @Get()//Mapeando o Get no controller
+    @HttpCode(HttpStatus.OK)//Retorna um status se der certo o Get ele retorna Ok
     findAll(): Promise<Usuario[]>{
-        return this.service.findAll()
+        return this.service.findAll()//Busca tudo dentro do banco
     }
 
     @Get('/:id')
     @HttpCode(HttpStatus.OK)
-    findById(@Param('id', ParseIntPipe) id: number): Promise<Usuario>{
-        return this.service.findById(id)
+    findById(@Param('id', ParseIntPipe) id: number): Promise<Usuario>{//Esperando um Id, que vai ser do tipo inteiro
+        return this.service.findById(id)//Buscando um Id
     }
 
     @Get('/nome/:nome')
     @HttpCode(HttpStatus.OK)
     findByNome(@Param('nome')nome: string): Promise<Usuario[]>{
         return this.service.findByNome(nome)
-    } 
+    }
 
-    @Post()
+    @Post()//Post Salva no DB
     @HttpCode(HttpStatus.CREATED)
     create(@Body() usuario: Usuario): Promise<Usuario>{
         return this.service.create(usuario)
     }
 
-    @Put()
+    @Put()//Atualiza no DB
     @HttpCode(HttpStatus.OK)
     update(@Body() usuario: Usuario): Promise<Usuario>{
         return this.service.update(usuario)
@@ -42,4 +43,4 @@ export class UsuarioController{
     delete(@Param('id', ParseIntPipe) id: number){
         return this.service.delete(id)
     }
-}
+}//check

@@ -7,7 +7,7 @@ import { Temas } from "../entities/temas.entity";
 export class TemasService {
     constructor(
         @InjectRepository(Temas)//Vai injetar um repositorio pegando temas como entidade
-        private temasRepository: Repository<Temas>//Esta guardando esse repositório temas 
+        private temasRepository: Repository<Temas>//Esta guardando esse repositório temas
     ) { }
 
     async findAll(): Promise<Temas[]> {
@@ -69,4 +69,4 @@ export class TemasService {
 
         return this.temasRepository.delete(id)
     }
-}
+}//check

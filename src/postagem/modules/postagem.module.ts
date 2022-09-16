@@ -3,10 +3,6 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { PostagemController } from "../controllers/postagem.controller";
 import { Postagem } from "../entities/postagem.entity";
 import { PostagemService } from "../services/postagem.service";
-<<<<<<< HEAD
-=======
-
->>>>>>> 07dc4050e9c0813a43b1456cd633843d4d007381
 
 
 @Module({
@@ -16,4 +12,4 @@ import { PostagemService } from "../services/postagem.service";
     exports: [TypeOrmModule]
 
 })
-export class PostagemModule{}
+export class PostagemModule{}//check

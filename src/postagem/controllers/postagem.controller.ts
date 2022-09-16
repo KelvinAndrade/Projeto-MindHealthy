@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common"
+import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Body, Put, Delete } from "@nestjs/common"
 import { ApiTags } from "@nestjs/swagger"
 import { Postagem } from "../entities/postagem.entity"
 import { PostagemService } from "../services/postagem.service"
+
 
 @ApiTags('Postagem')
 @Controller('/postagem')
@@ -43,4 +44,4 @@ export class PostagemController{
     delete(@Param('id', ParseIntPipe) id: number){
         return this.service.delete(id)
     }
-}
+}//check

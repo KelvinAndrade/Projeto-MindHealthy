@@ -4,27 +4,29 @@ import { DeleteResult, ILike, Repository } from "typeorm";
 import { Postagem } from "../entities/postagem.entity";
 
 @Injectable()
-export class PostagemService{
+export class PostagemService {
     constructor(
         @InjectRepository(Postagem)
         private postagemRepository: Repository<Postagem>
-    ){}
+    ) { }
 
-    async findAll(): Promise<Postagem[]>{
+    async findAll(): Promise<Postagem[]> {
         return this.postagemRepository.find({
             relations: {
-                temas : true
+                temas: true,
+                usuario: true
             }
         })
     }
 
-    async findById(id: number): Promise<Postagem>{
+    async findById(id: number): Promise<Postagem> {
         let postagem = await this.postagemRepository.findOne({
             where: {
                 id
             },
             relations: {
-                temas: true
+                temas: true,
+                usuario: true
             }
         })
 
@@ -36,34 +38,35 @@ export class PostagemService{
 
     async findByDescricao(descricao: string): Promise<Postagem[]> {
         return this.postagemRepository.find({
-            where:{
-            descricao: ILike(`%${descricao}%`)
+            where: {
+                descricao: ILike(`%${descricao}%`)
             },
             relations: {
-                temas : true
+                temas: true,
+                usuario: true
             }
         })
     }
 
-    async create(postagem: Postagem): Promise<Postagem>{
+    async create(postagem: Postagem): Promise<Postagem> {
         return this.postagemRepository.save(postagem)
     }
 
-    async update(postagem: Postagem): Promise<Postagem>{
+    async update(postagem: Postagem): Promise<Postagem> {
         let postagemUpdate = await this.findById(postagem.id)
 
         if (!postagemUpdate || !postagem.id)
-            throw new HttpException('Postagem não foi encontrado', HttpStatus.NOT_FOUND)
+            throw new HttpException('Postagem não foi encontrada', HttpStatus.NOT_FOUND)
 
         return this.postagemRepository.save(postagem)
     }
 
-    async delete(id: number): Promise<DeleteResult>{
+    async delete(id: number): Promise<DeleteResult> {
         let postagemDelete = await this.findById(id)
 
         if (!postagemDelete)
-            throw new HttpException('Postagem não foi encontrado', HttpStatus.NOT_FOUND)
+            throw new HttpException('Postagem não foi encontrada', HttpStatus.NOT_FOUND)
 
         return this.postagemRepository.delete(id)
     }
-}
+}//check
