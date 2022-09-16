@@ -1,12 +1,9 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { Postagem } from './postagem/entities/postagem.entity';
-import { PostagemModule } from './postagem/modules/postagem.module';
-import { Temas } from './temas/entities/temas.entity';
-import { TemasModule } from './temas/modules/temas.module';
-import { Usuario } from './usuario/entities/usuario.entity';
-import { UsuarioModule } from './usuario/modules/usuario.module';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { AppController } from "./app.controller";
+import { PostagemModule } from "./postagem/modules/postagem.module";
+import { TemasModule } from "./temas/modules/temas.module";
+import { UsuarioModule } from "./usuario/modules/usuario.module";
 
 @Module({
   imports: [
@@ -27,8 +24,9 @@ import { UsuarioModule } from './usuario/modules/usuario.module';
       ssl: {
         rejectUnauthorized: false
       },
-      autoLoadEntities: true,
-      synchronize: true
+      synchronize: true,
+      autoLoadEntities: true
+      
     }),
 
     PostagemModule,
