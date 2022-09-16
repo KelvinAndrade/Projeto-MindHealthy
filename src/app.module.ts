@@ -10,8 +10,9 @@ import { UsuarioModule } from './usuario/modules/usuario.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({//Vai ter o que é necessario pra se conectar com o DB
+    TypeOrmModule.forRoot({
 
+<<<<<<< HEAD
       /*type: 'mysql',//Definindo objeto do tipo mysql
 
       host: 'localhost', //Definindo que o host é o localhost
@@ -27,6 +28,16 @@ import { UsuarioModule } from './usuario/modules/usuario.module';
       entities: [Postagem, Temas, Usuario], //Criando o TB tarefa
 
       synchronize: true //Sincroniza todos os dados e alterações no DB*/
+=======
+      type: 'mysql',
+      host: 'localhost', 
+      port: 3306, 
+      username: 'root', 
+      password: 'root', 
+      database: 'db_mindhealthy', 
+      entities: [Postagem, Temas, Usuario], 
+      synchronize: true 
+>>>>>>> 07dc4050e9c0813a43b1456cd633843d4d007381
 
       type: 'postgres',
       host: process.env.DATABASE_URL,      
@@ -42,7 +53,11 @@ import { UsuarioModule } from './usuario/modules/usuario.module';
     PostagemModule,
     TemasModule,
     UsuarioModule
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 07dc4050e9c0813a43b1456cd633843d4d007381
     ],
   controllers: [AppController],
   providers: [],
