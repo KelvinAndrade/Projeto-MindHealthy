@@ -1,7 +1,9 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common"
+import { ApiTags } from "@nestjs/swagger"
 import { Postagem } from "../entities/postagem.entity"
-import { PostagemService } from "../services/postagem.services"
+import { PostagemService } from "../services/postagem.service"
 
+@ApiTags('Postagem')
 @Controller('/postagem')
 export class PostagemController{
     constructor(private readonly service: PostagemService){}

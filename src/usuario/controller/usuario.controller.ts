@@ -1,48 +1,46 @@
-import { IsNotEmpty, MaxLength } from "class-validator";
-import { Temas } from "src/temas/entities/temas.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Body, Put, Delete } from "@nestjs/common"
+import { ApiTags } from "@nestjs/swagger"
+import { Usuario } from "../entities/usuario.entity"
+import { UsuarioService } from "../services/usuario.service"
 
-@Entity({name: 'tb_usuario'})
-export class Usuario {
-    [x: string]: any;
+@ApiTags('Usuários')
+@Controller('/usuario')
+export class UsuarioController{
+    constructor(private readonly service: UsuarioService){}
 
-    @PrimaryGeneratedColumn()
-    id: number
+    @Get()//Mapeando o Get no controller
+    @HttpCode(HttpStatus.OK)//Retorna um status se der certo o Get ele retorna Ok
+    findAll(): Promise<Usuario[]>{
+        return this.service.findAll()//Busca tudo dentro do banco
+    }
 
-    @Column({nullable: false, length: 255})
-    @IsNotEmpty()
-    @MaxLength(255)
-    nome: string
+    @Get('/:id')
+    @HttpCode(HttpStatus.OK)
+    findById(@Param('id', ParseIntPipe) id: number): Promise<Usuario>{//Esperando um Id, que vai ser do tipo inteiro
+        return this.service.findById(id)//Buscando um Id
+    }
 
-    @IsNotEmpty()
-    @MaxLength(255)
-    @Column({nullable: false, length: 255})
-    sobrenome: string
+    @Get('/usuario/:usuario')
+    @HttpCode(HttpStatus.OK)//Retorna um status se der certo o Get ele retorna Ok
+    findByUsuario(@Param('usuario')usuario: string): Promise<Usuario[]>{
+        return this.service.findByUsuario(usuario)
+    } 
 
-    @IsNotEmpty()
-    @MaxLength(255)
-    @Column({nullable: false})
-    idade: number
+    @Post()//Post Salva no DB
+    @HttpCode(HttpStatus.CREATED)
+    create(@Body() usuario: Usuario): Promise<Usuario>{
+        return this.service.create(usuario)
+    }
 
-    @IsNotEmpty()
-    @MaxLength(255)
-    @Column({nullable: false, length: 255})
-    email: string
+    @Put()//Atualiza no DB
+    @HttpCode(HttpStatus.OK)
+    update(@Body() usuario: Usuario): Promise<Usuario>{
+        return this.service.update(usuario)
+    }
 
-    @IsNotEmpty()
-    @MaxLength(255)
-    @Column({nullable: false, length: 255})
-    telefone: string
-
-    @MaxLength(255)
-    @Column({nullable: false, length: 255})
-    foto: string
-
-    @MaxLength(255)
-    @Column({nullable: false, length: 255})
-    senha: string
-
-    @ManyToOne(() => Temas, (Temas ) => Temas.postagem, {
-        onDelete: "CASCADE"})
-categoria: Temas
+    @Delete('/:id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    delete(@Param('id', ParseIntPipe) id: number){
+        return this.service.delete(id)
+    }
 }
