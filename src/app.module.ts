@@ -12,16 +12,16 @@ import { UsuarioModule } from './usuario/modules/usuario.module';
   imports: [
     TypeOrmModule.forRoot({
 
-      type: 'mysql',
+      /*type: 'mysql',
       host: 'localhost', 
       port: 3306, 
       username: 'root', 
       password: 'root', 
       database: 'db_mindhealthy', 
       entities: [Postagem, Temas, Usuario], 
-      synchronize: true
+      synchronize: true*/
 
-      /*type: 'postgres',
+      type: 'postgres',
       host: process.env.DATABASE_URL,      
       logging: false,
       dropSchema: false,
@@ -29,7 +29,7 @@ import { UsuarioModule } from './usuario/modules/usuario.module';
         rejectUnauthorized: false
       },
       autoLoadEntities: true,
-      synchronize: true*/
+      synchronize: true
     }),
 
     PostagemModule,
