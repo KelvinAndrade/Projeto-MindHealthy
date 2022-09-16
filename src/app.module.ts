@@ -18,7 +18,7 @@ import { UsuarioModule } from "./usuario/modules/usuario.module";
       synchronize: true*/
 
       type: 'postgres',
-      host: process.env.DATABASE_URL,      
+      url: process.env.DATABASE_URL,      
       logging: false,
       dropSchema: false,
       ssl: {
