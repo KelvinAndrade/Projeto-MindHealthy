@@ -9,32 +9,23 @@ import { UsuarioModule } from './usuario/modules/usuario.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({//Vai ter o que é necessario pra se conectar com o DB
+    TypeOrmModule.forRoot({
 
-      type: 'mysql',//Definindo objeto do tipo mysql
-
-      host: 'localhost', //Definindo que o host é o localhost
-
-      port: 3306, //Definindo a pasta do local host (Porta padrão)
-
-      username: 'root', //Definindo o username do mysql
-
-      password: 'root', //Senha padrão DB
-
-      database: 'db_mindhealthy', //Nome da tabela que criamos
-
-      entities: [Postagem, Temas, Usuario], //Criando o TB tarefa
-
-      synchronize: true //Sincroniza todos os dados e alterações no DB
-
-      //Com essas informações é possivel se conectar com o BD
+      type: 'mysql',
+      host: 'localhost', 
+      port: 3306, 
+      username: 'root', 
+      password: 'root', 
+      database: 'db_mindhealthy', 
+      entities: [Postagem, Temas, Usuario], 
+      synchronize: true 
 
     }),
 
     PostagemModule,
     TemasModule,
     UsuarioModule
-
+    
     ],
   controllers: [],
   providers: [],

@@ -1,12 +1,12 @@
 import { IsNotEmpty, MaxLength } from "class-validator";
 import { Temas } from "src/temas/entities/temas.entity";
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Usuario } from "../../usuario/entities/usuario.entity";
 
 
 @Entity({ name: 'tb_postagem' })
 export class Postagem {
-    [x: string]: any;
-
+  
     @PrimaryGeneratedColumn()
     id: number
 
@@ -28,4 +28,9 @@ export class Postagem {
         onDelete: "CASCADE"
     })
     temas: Temas
+
+    @ManyToOne(() => Usuario, (Usuario) => Usuario.postagem, {
+        onDelete: "CASCADE"
+    })
+    usuario: Usuario
 }
