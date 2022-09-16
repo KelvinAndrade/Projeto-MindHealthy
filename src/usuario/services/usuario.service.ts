@@ -15,10 +15,10 @@ export class UsuarioService{
         return this.usuarioRepository.find({
             relations: {
                 postagem : true
-
          }
         })
     }
+
     async findById(id: number): Promise<Usuario>{
         let usuario = await this.usuarioRepository.findOne({
             where: {
@@ -26,8 +26,7 @@ export class UsuarioService{
             },
             relations: {
                 postagem: true
-
-         }
+            }
         })
 
         if (!usuario)
@@ -43,8 +42,7 @@ export class UsuarioService{
             },
             relations: {
                 postagem : true
-
-         }
+            }
         })
     }
 
@@ -56,18 +54,17 @@ export class UsuarioService{
         let usuarioUpdate = await this.findById(usuario.id)
 
        if (!usuarioUpdate || !usuario.id)
-        throw new HttpException('Usuario não foi encontrado', HttpStatus.NOT_FOUND)
+            throw new HttpException('Usuario não foi encontrado', HttpStatus.NOT_FOUND)
 
-        return this.usuarioRepository.save(usuario)
+            return this.usuarioRepository.save(usuario)
     }
 
     async delete(id: number): Promise<DeleteResult>{
-
         let usuarioDelete = await this.findById(id)
 
         if (!usuarioDelete)
             throw new HttpException('Usuario não foi encontrado', HttpStatus.NOT_FOUND)
 
-        return this.usuarioRepository.delete(id)
+            return this.usuarioRepository.delete(id)
     }
 }

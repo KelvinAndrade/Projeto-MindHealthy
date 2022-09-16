@@ -4,8 +4,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: 'tb_temas' })
 export class Temas {
-    [x: string]: any;
-
+   
     @PrimaryGeneratedColumn()
     id: number
 
