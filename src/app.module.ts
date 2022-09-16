@@ -24,8 +24,9 @@ import { UsuarioModule } from "./usuario/modules/usuario.module";
       ssl: {
         rejectUnauthorized: false
       },
-      autoLoadEntities: true,
-      synchronize: true
+      synchronize: true,
+      autoLoadEntities: true
+      
     }),
 
     PostagemModule,
