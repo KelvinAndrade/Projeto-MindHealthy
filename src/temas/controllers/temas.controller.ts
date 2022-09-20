@@ -2,6 +2,7 @@ import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Body,
 import { Temas } from "../entities/temas.entity"
 import { TemasService } from "../service/temas.service"
 
+@ApiTags('Temas')
 @Controller('/temas')
 export class TemasController{
     constructor(private readonly service: TemasService){}
