@@ -1,4 +1,5 @@
 import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Body, Put, Delete } from "@nestjs/common"
+import { ApiTags } from "@nestjs/swagger"
 import { Temas } from "../entities/temas.entity"
 import { TemasService } from "../service/temas.service"
 
