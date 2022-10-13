@@ -10,7 +10,6 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
 export class Postagem {
 
     @ApiProperty()
-
     @PrimaryGeneratedColumn()
     id: number
 
